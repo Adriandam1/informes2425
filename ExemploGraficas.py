@@ -1,6 +1,7 @@
 import os.path
 
 from reportlab.graphics.shapes import Drawing
+from reportlab.lib.colors import yellow
 # Para el ejemplo de graficas partimos del exmeplo platypus
 # doc: https://docs.reportlab.com/reportlab/userguide/ch11_graphics/
 # -------------------------------------------------
@@ -16,8 +17,9 @@ from reportlab.graphics.charts.barcharts import VerticalBarChart3D, VerticalBarC
 from reportlab.graphics.charts.linecharts import HorizontalLineChart
 from reportlab.graphics.widgets.markers import makeMarker
 from reportlab.graphics.charts.lineplots import LinePlot
-from reportlab.graphics.charts.legends import LineLegend
+from reportlab.graphics.charts.legends import LineLegend, Legend
 from reportlab.graphics.charts.textlabels import Label
+from reportlab.graphics.charts.piecharts import Pie, Pie3d
 
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import A4
@@ -198,12 +200,139 @@ etiquetas = ['Caso 1', 'Caso 2']
 # o color ten que ir alineado co nome, para eso creamos unha lista onde poñemos o color que ten as liñas para a serie correspondente
 lenda.colorNamePairs = [(lp.lines[i].strokeColor, etiquetas[i]) for i in range (len (lp.data))]
 
-
 debuxo.add(lenda)
 documento.append(debuxo)
 
+#-----------------------------------------
+#Gracia de tarta (pie)
+# https://docs.reportlab.com/reportlab/userguide/ch11_graphics/#pie-charts
+debuxo = Drawing (300, 200)
+tarta = Pie()
+# posicionamos a tarta
+tarta.x = 60
+tarta.y = 15
+# como he unha tarta nos deberia facer falta poñerlle proporcions
+#tarta.width = 170
+#tarta.height = 170
+# añadimos os datos
+tarta.data = [8, 6, 2, 4, 7, 3]
+# poñemos has etiquetas
+tarta.labels = ["AD", "PMDM", "EIE", "SXE", "DI", "PSP"]
+# No caso da tarta usamos slices que os as porcions da tarta
+tarta.slices.strokeWidth = 0.5
+# popout es la medida para separar la porcion de la tarta
+tarta.slices[4].popout = 10
+# strokeWidth: ancho de liña
+tarta.slices[4].strokeWidth = 2
+# strokeDashArray: porcion que ten de negro e de blanco [unidades de negro, unidades de blanco]
+tarta.slices[4].strokeDashArray = [2,2]
+tarta.slices[4].labelRadius = 1.75
+tarta.slices[4].fontColor = colors.red
+tarta.sideLabels = 1
+
+# añadimos unha lenda a nosa tarta
+lenda = Legend()
+lenda.x = 250
+lenda.y = 10
+lenda.dx = 8
+lenda.dy = 8
+lenda.fontName = "Helvetica"
+lenda.fontSize = 8
+lenda.boxAnchor = 'n'
+lenda.columnMaximum = 10
+lenda.strokeWidth = 1
+lenda.strokeColor = colors.black
+lenda.deltax = 75
+lenda.deltay = 10
+lenda.autoXPadding = 5
+lenda.yGap = 0
+lenda.dxTextSpace = 5 # espazo entre caracteres
+lenda.alignment = 'right' # alineamento do texto
+lenda.dividerLines = 1|2|4 # liñas divisorias
+lenda.dividerOffsY = 5
+lenda.subCols.rpad = 30
+#indicsmoa os colores
+cores = [colors.red, colors.blue, colors.green, colors.orange, colors.yellow, colors.lavender]
+# numeramos os colores e se llos pasamos a tarta e a lenda
+for i, color in enumerate (cores):
+    tarta.slices[i].fillColor = color
+
+lenda.colorNamePairs = [(tarta.slices[i].fillColor, (tarta.labels[i][0:20], '%0.2f' % tarta.data[i])
+                             ) for i in range (len (tarta.data))] # collemos o nome collemos de 0 a 20 caracteres, marcamos que vai con 2 decimais
 
 
+
+debuxo.add(lenda)
+debuxo.add(tarta)
+documento.append(debuxo)
+
+
+#-----------------------------------------TARTA 3D
+# es la misma tarta pero en 3d
+documento.append(Spacer(0, 20)) # spacer para separas as tartasw
+#Gracia de tarta3d (pie)
+# https://docs.reportlab.com/reportlab/userguide/ch11_graphics/#pie-charts
+debuxo = Drawing (300, 200)
+tarta2 = Pie3d()
+# posicionamos a tarta
+tarta2.x = 80
+tarta2.y = 0
+# como he unha tarta nos deberia facer falta poñerlle proporcions
+tarta2.width = 150
+tarta2.height = 100
+# añadimos os datos
+tarta2.data = [8, 6, 2, 4, 7, 3]
+# poñemos has etiquetas
+tarta2.labels = ["AD", "PMDM", "EIE", "SXE", "DI", "PSP"]
+# No caso da tarta usamos slices que os as porcions da tarta
+tarta2.slices.strokeWidth = 0.5
+# popout es la medida para separar la porcion de la tarta
+tarta2.slices[4].popout = 10
+# strokeWidth: ancho de liña
+tarta2.slices[4].strokeWidth = 2
+# strokeDashArray: porcion que ten de negro e de blanco [unidades de negro, unidades de blanco]
+tarta2.slices[4].strokeDashArray = [2,2]
+tarta2.slices[4].labelRadius = 1.75
+tarta2.slices[4].fontColor = colors.red
+tarta2.sideLabels = 1
+
+# añadimos unha lenda a nosa tarta
+lenda2 = Legend()
+lenda2.x = 250
+lenda2.y = 10
+lenda2.dx = 8
+lenda2.dy = 8
+lenda2.fontName = "Helvetica"
+lenda2.fontSize = 8
+lenda2.boxAnchor = 'n'
+lenda2.columnMaximum = 10
+lenda2.strokeWidth = 1
+lenda2.strokeColor = colors.black
+lenda2.deltax = 75
+lenda2.deltay = 10
+lenda2.autoXPadding = 5
+lenda2.yGap = 0
+lenda2.dxTextSpace = 5 # espazo entre caracteres
+lenda2.alignment = 'right' # alineamento do texto
+lenda2.dividerLines = 1|2|4 # liñas divisorias
+lenda2.dividerOffsY = 5
+lenda2.subCols.rpad = 30
+#indicsmoa os colores
+cores = [colors.red, colors.blue, colors.green, colors.orange, colors.yellow, colors.lavender]
+# numeramos os colores e se llos pasamos a tarta e a lenda
+for i, color in enumerate (cores):
+    tarta2.slices[i].fillColor = color
+
+lenda2.colorNamePairs = [(tarta2.slices[i].fillColor, (tarta2.labels[i][0:20], '%0.2f' % tarta2.data[i])
+                             ) for i in range (len (tarta2.data))] # collemos o nome collemos de 0 a 20 caracteres, marcamos que vai con 2 decimais
+
+
+
+debuxo.add(lenda2)
+debuxo.add(tarta2)
+documento.append(debuxo)
+
+#-------------------------------------------------
 
 
 
