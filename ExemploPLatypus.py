@@ -133,7 +133,7 @@ documento.append(taboa3)
 
 
 # showBoundary lle fai un recuadro
-doc = SimpleDocTemplate("ExemploPLatypusTaboa.pdf", pagesize=A4, showBoundary= 1)
+doc = SimpleDocTemplate("PDF/ExemploPLatypusTaboa.pdf", pagesize=A4, showBoundary= 1)
 doc.build(documento)
 
 

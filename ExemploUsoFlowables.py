@@ -9,7 +9,7 @@ estilo = follaEstilo['BodyText']
 
 parragrafo = Paragraph("O texto que imos mostrar máis lonxitude haber si  para que non entre temos que escribir máis e máis textotexto")
 
-obxetoCanvas = Canvas(os.path.realpath('exemploFlowable.pdf'))
+obxetoCanvas = Canvas(os.path.realpath('PDF/exemploFlowable.pdf'))
 # esto e unha tupla:
 ancho, alto = 300, 300
 

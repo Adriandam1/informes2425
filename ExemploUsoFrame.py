@@ -9,7 +9,7 @@ from reportlab.lib.units import cm
 from reportlab.platypus import Paragraph, Frame, Image, Spacer
 
 
-obxectoCambas = Canvas (os.path.realpath('exemploUsoFrame.pdf'))
+obxectoCambas = Canvas (os.path.realpath('PDF/exemploUsoFrame.pdf'))
 follaEstilo = getSampleStyleSheet()
 
 estNormal = follaEstilo['Normal']

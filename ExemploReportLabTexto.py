@@ -3,7 +3,7 @@ from reportlab.pdfgen import canvas
 
 cadea = ["Tres tristes tigres", "comeron trigo nun trigal", "en que trigal", "comeron os tristes tigres"]
 
-aux = canvas.Canvas("probaTexto.pdf")
+aux = canvas.Canvas("PDF/probaTexto.pdf")
 obxetoTexto = aux.beginText() # esta funcion beginText nos permite facer un obxeto que nos permite pintar texto
 obxetoTexto.setTextOrigin(100, 800)
 obxetoTexto.setFont("Courier", 14)

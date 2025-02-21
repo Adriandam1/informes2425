@@ -3,7 +3,7 @@
 
 from reportlab.pdfgen import canvas
 
-papel = canvas.Canvas ("primeiroDocumento.pdf")
+papel = canvas.Canvas ("PDF/primeiroDocumento.pdf")
 # tendo o obxeto en cambas pordemos usar unha serie de metodos:
 # drawString permitenos "pintar" un texto onde lle indiquemos
 papel.drawString(0, 0, "Posición orixinada (x,y) = (00, 00)")

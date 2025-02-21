@@ -338,5 +338,5 @@ documento.append(debuxo)
 
 
 # showBoundary lle fai un recuadro
-doc = SimpleDocTemplate("ExemploGraficas.pdf", pagesize=A4, showBoundary= 1)
+doc = SimpleDocTemplate("PDF/ExemploGraficas.pdf", pagesize=A4, showBoundary= 1)
 doc.build(documento)
